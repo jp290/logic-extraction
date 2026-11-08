@@ -1,0 +1,3 @@
+Using the grounding pack: for batch 61, the best-fit linear trend for temperature at 20 min gives T_at_20min = 55.8401 + 0.0463002 × 61 ≈ 58.66 °C. The best exponential trend for time to 45 °C gives t_to_45c ≈ 37.97 min. Normalizing with the shape table (x = fraction of total span), T = 58.66 °C corresponds to x ≈ 0.322, so total span ≈ 62.1 min. At t = 46.3 min, x ≈ 0.745, and the shape table gives T ≈ 40.8 °C. The held-out validation MAE of the shape table is about 2.2 °C.
+
+FINAL ESTIMATE: 40.8 °C

@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - name: Install
+        run: |
+          bun install --frozen-lockfile
+          python -m venv tools/pack/.venv
+          tools/pack/.venv/bin/pip install -r tools/pack/requirements.txt
+      - name: Typecheck
+        run: bun run typecheck
+      - name: Test
+        run: bun test

@@ -1,0 +1,3 @@
+Using the best validated trend model (exponential) for time to reach 45 °C, batch 47 has t_to_45c ≈ 32.7764 + 10410.9·(exp(8.17026×10⁻⁶·47) – 1) ≈ 36.78 min. From the normalized shape table, T = 45 °C occurs at normalized position x ≈ 0.6125. Thus the total cooling span for batch 47 is about 36.78 / 0.6125 ≈ 60.04 min. At 13.4 min, the normalized position is x = 13.4 / 60.04 ≈ 0.2232. Interpolating in the shape table (x=0.200 → 66.965 °C, x=0.225 → 65.1075 °C) gives a temperature of approximately 65.2 °C. The held‑out validation MAE for the shape table is ±2.16 °C, so this is the best point estimate within the pack’s valid envelope.
+
+FINAL ESTIMATE: 65.2 °C

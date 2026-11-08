@@ -1,0 +1,3 @@
+The linear trend model for discharge cutoff time (t_cutoff_s) fitted on cycles 1–88 gives t_cutoff_s(k) = 3408.14 − 6.70232·k, with a held-out validation MAE of 55.6 s. For cycle 130, which lies outside the valid envelope (1–110), the extrapolated estimate is 3408.14 − 6.70232×130 = 2536.8 s, with the validation MAE as a lower bound on error, plus unquantified structural uncertainty from extrapolation.
+
+FINAL ESTIMATE: 2537 s

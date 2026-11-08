@@ -1,0 +1,5 @@
+The fouling‐sensitive cooling process is captured by two trend models from the grounding pack (fitted on batches 1–88). The **best‑held‑out model for time to 45 °C** is the exponential trend: for batch 92 it yields \(t_{\text{to 45 °C}} \approx 40.60\ \text{min}\).  
+Using the **normalised shape table** (median reference curve from the same training window), the fraction of the total cooling span where \(T_c = 45\ \text{°C}\) is \(x_{45} \approx 0.6125\). Thus the total span for batch 92 is \(L = 40.60 / 0.6125 \approx 66.28\ \text{min}\).  
+At 33.7 min the normalised time is \(x = 33.7 / 66.28 \approx 0.5085\). Interpolating the shape table between \(x=0.500\) (49.52 °C) and \(x=0.525\) (48.36 °C) gives **≈ 49.13 °C**. (The held‑out validation MAE of the shape table is ~2.2 °C, so the estimate is rounded to one decimal.)
+
+FINAL ESTIMATE: 49.1 °C

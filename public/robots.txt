@@ -1,0 +1,7 @@
+# Logic Extraction — index the product and lens pages, skip the API.
+# Lens pages (/e/:id) carry JSON-LD and noscript content for crawlers.
+
+User-agent: *
+Allow: /
+Allow: /e/
+Disallow: /api/

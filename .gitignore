@@ -1,0 +1,10 @@
+node_modules/
+.env
+data/
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+*.log
+tools/pack/.venv/
+.DS_Store

@@ -1,0 +1,1 @@
+The linear capacity trend predicts a discharge capacity of 1.508 Ah at cycle 105, with a held‑out validation MAE of 0.032 Ah.

@@ -1,0 +1,324 @@
+/* ============================================================
+   Logic Extraction — Design System
+   One token + primitive layer shared by both surfaces (landing :3490,
+   engine :3480). Served by the engine; the landing proxies to it, so
+   editing this file updates both. Plain CSS custom properties — no build.
+
+   Thesis: the design recedes so the minds come forward. One accent +
+   neutrals, hairlines + a surface ladder for depth (not shadows), one
+   serif voice for the minds. Subtraction over decoration.
+   ============================================================ */
+
+:root {
+  /* ---- Canvas & surfaces -------------------------------------
+     Depth comes from a lightness ladder (translucent white over the
+     near-black canvas) + hairline borders, never drop shadows. */
+  --bg: #020202;                          /* app canvas (also theme-color) */
+  --surface: rgba(255,255,255,0.03);      /* recessed: inputs, output wells */
+  --glass: rgba(255,255,255,0.04);        /* default card fill */
+  --glass-2: rgba(255,255,255,0.06);      /* hover / raised */
+  --glass-3: rgba(255,255,255,0.08);      /* highest glass */
+  --inset: rgba(0,0,0,0.25);              /* sunk wells over glass */
+  /* Opaque ladder (violet-tinted near-blacks) for things that must not
+     show content through them: sticky nav, popovers, modals. */
+  --solid-1: #0b0a0f;
+  --solid-2: #121017;
+  --solid-3: #1a1722;
+  --solid-4: #221e2b;
+
+  /* ---- Text (alpha-on-black ramp) ---------------------------- */
+  --text: rgba(255,255,255,0.9);          /* primary */
+  --text-2: rgba(255,255,255,0.6);        /* secondary */
+  --text-3: rgba(255,255,255,0.45);       /* muted (a11y: 0.45 not 0.40) */
+  --text-faint: rgba(255,255,255,0.3);    /* faint: footers, hints */
+
+  /* ---- Borders (alpha, so they sit on any surface) ----------- */
+  --border-subtle: rgba(255,255,255,0.05);
+  --border: rgba(255,255,255,0.08);
+  --border-strong: rgba(255,255,255,0.14); /* interactive / hover */
+
+  /* ---- Accent (one hue, an alpha ramp + two solids) ---------- */
+  --accent: #8b5cf6;                      /* the violet (solid) */
+  --accent-hover: #9b6df7;                /* lighter for hover */
+  --accent-text: #a78bfa;                 /* accent as text/link on dark */
+  --accent-a8: rgba(139,92,246,0.08);
+  --accent-a12: rgba(139,92,246,0.12);
+  --accent-dim: rgba(139,92,246,0.15);    /* canonical active-fill wash */
+  --accent-a20: rgba(139,92,246,0.20);
+  --accent-a25: rgba(139,92,246,0.25);
+  --accent-a40: rgba(139,92,246,0.40);
+
+  /* ---- Semantic states (desaturated, used only on the in-state
+     element — never as page-level colour) ---------------------- */
+  --success: #34d399;
+  --warn: #e0a82e;
+  --danger: #ef4444;
+
+  /* ---- Type -------------------------------------------------- */
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Fraunces', 'Newsreader', Georgia, 'Times New Roman', serif;
+  --mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Modular scale (~1.2) — px values, role-named */
+  --fs-xs: 11px;     /* micro labels / eyebrows */
+  --fs-sm: 13px;     /* captions, dense UI */
+  --fs-base: 15px;   /* body */
+  --fs-md: 17px;     /* lede / large body */
+  --fs-lg: 20px;
+  --fs-xl: 24px;
+  --fs-2xl: 30px;
+  --fs-3xl: 38px;
+  --fs-display: clamp(36px, 6vw, 56px);
+  --fs-display-sm: clamp(28px, 4.6vw, 44px);
+
+  --fw-light: 300;
+  --fw-normal: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+
+  --lh-tight: 1.15;
+  --lh-snug: 1.3;
+  --lh-normal: 1.6;
+  --lh-relaxed: 1.7;
+
+  --ls-display: -0.02em;
+  --ls-tight: -0.01em;
+  --ls-label: 0.08em;     /* uppercase eyebrows */
+
+  /* ---- Spacing (8px base + 4px sub-steps) -------------------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+
+  /* ---- Radius ------------------------------------------------ */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-pill: 999px;
+
+  /* ---- Elevation (almost no shadow; depth = surface + border) - */
+  --focus-ring: 0 0 0 2px rgba(139,92,246,0.5);
+  --shadow-float: 0 12px 40px rgba(0,0,0,0.5);  /* reserved: true overlays only */
+
+  /* ---- Motion ------------------------------------------------ */
+  --dur-fast: 0.15s;
+  --dur: 0.25s;
+  --dur-slow: 0.4s;
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ---- Layout ------------------------------------------------ */
+  --wrap: 960px;
+  --wrap-wide: 1200px;
+  --measure: 64ch;          /* comfortable reading column */
+
+  /* ---- Engine-name aliases (legacy → canonical) --------------
+     The engine's CSS references these names. Mapping them here means
+     the engine keeps working as we delete its redundant :root block. */
+  --bg-color: var(--bg);
+  --text-primary: var(--text);
+  --text-secondary: var(--text-2);
+  --text-dim: var(--text-3);
+  --glass-bg: var(--glass);
+  --glass-border: var(--border);
+  --glass-hover: var(--glass-2);
+  --panel-radius: var(--radius-md);
+  --max-width: var(--wrap-wide);
+  --font-family: var(--font);
+  --font-mono: var(--mono);
+}
+
+/* ============================================================
+   Primitives — a small shared vocabulary. Surfaces opt in; these
+   replace the per-surface hand-rolled buttons/cards/pills.
+   ============================================================ */
+
+/* Uppercase micro-label / eyebrow */
+.eyebrow {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--accent-text);
+}
+
+/* Reading column */
+.measure { max-width: var(--measure); }
+
+/* Serif utility — the one expressive voice, for the minds */
+.serif {
+  font-family: var(--font-serif);
+  font-optical-sizing: auto;
+  letter-spacing: var(--ls-tight);
+}
+
+/* Buttons --------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  font-family: var(--font);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  line-height: 1;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease),
+              border-color var(--dur-fast) var(--ease),
+              color var(--dur-fast) var(--ease),
+              transform var(--dur-fast) var(--ease),
+              opacity var(--dur-fast) var(--ease);
+}
+.btn:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+
+.btn--primary {
+  background: var(--accent);
+  color: #fff;
+}
+.btn--primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
+
+.btn--ghost {
+  background: transparent;
+  color: var(--text-2);
+  border-color: var(--border);
+}
+.btn--ghost:hover { background: var(--glass); color: var(--text); border-color: var(--border-strong); }
+
+.btn--sm { padding: var(--space-2) var(--space-3); font-size: var(--fs-xs); }
+
+/* Card ------------------------------------------------------ */
+.card {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  transition: background var(--dur-fast) var(--ease),
+              border-color var(--dur-fast) var(--ease),
+              transform var(--dur-fast) var(--ease);
+}
+.card--interactive { cursor: pointer; }
+.card--interactive:hover {
+  background: var(--glass-2);
+  border-color: var(--border-strong);
+  transform: translateY(-1px);
+}
+
+/* Pill / chip (toggle) -------------------------------------- */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--text-2);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all var(--dur-fast) var(--ease);
+}
+.pill:hover { color: var(--text); border-color: var(--border-strong); }
+.pill[aria-selected="true"], .pill.is-active {
+  color: var(--accent-text);
+  background: var(--accent-dim);
+  border-color: var(--accent-a25);
+}
+
+/* Inputs ---------------------------------------------------- */
+.input, .textarea {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--font);
+  font-size: var(--fs-base);
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  transition: border-color var(--dur-fast) var(--ease),
+              box-shadow var(--dur-fast) var(--ease);
+}
+.input::placeholder, .textarea::placeholder { color: var(--text-3); }
+.input:focus, .textarea:focus {
+  outline: none;
+  border-color: var(--accent-a40);
+  box-shadow: var(--focus-ring);
+}
+
+/* The minds' quote — a designed editorial object ------------ */
+.quote {
+  font-family: var(--font-serif);
+  font-optical-sizing: auto;
+  font-size: var(--fs-md);
+  line-height: var(--lh-relaxed);
+  font-style: italic;
+  color: var(--text);
+  padding-left: var(--space-4);
+  border-left: 2px solid var(--accent-a40);
+}
+.quote-attribution {
+  display: block;
+  margin-top: var(--space-3);
+  font-family: var(--font);
+  font-style: normal;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--text-3);
+}
+
+/* ============================================================
+   Shared header — one nav spine on both surfaces. Same vocabulary
+   (Consult · Council · Recruit · Merge); on the engine the links
+   switch tabs, on the landing they deep-link to the engine/sections.
+   ============================================================ */
+.site-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; gap: var(--space-5);
+  padding: var(--space-3) var(--space-6);
+  background: rgba(2,2,2,0.72);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.site-header .nav-brand {
+  font-family: var(--font);
+  font-size: var(--fs-sm); font-weight: var(--fw-semibold);
+  color: var(--text); letter-spacing: var(--ls-tight); text-decoration: none;
+}
+.site-nav { display: flex; align-items: center; gap: var(--space-1); }
+.site-nav-link {
+  font-family: var(--font); font-size: var(--fs-sm); font-weight: var(--fw-medium);
+  color: var(--text-2); background: transparent; border: none; cursor: pointer;
+  padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease);
+}
+.site-nav-link:hover { color: var(--text); background: var(--glass); text-decoration: none; }
+.site-nav-link.active { color: var(--accent-text); background: var(--accent-dim); }
+.site-nav-link:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.site-nav-link--ghost { margin-left: auto; color: var(--text-3); }
+.site-nav-link--ghost:hover { color: var(--text-2); }
+
+.is-hidden { display: none !important; }
+[id] { scroll-margin-top: 80px; }
+
+@media (max-width: 640px) {
+  .site-header { gap: var(--space-3); padding: var(--space-3) var(--space-4); }
+  .site-nav { gap: 0; }
+  .site-nav-link { padding: var(--space-2); font-size: var(--fs-xs); }
+  .site-nav-link--ghost { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}

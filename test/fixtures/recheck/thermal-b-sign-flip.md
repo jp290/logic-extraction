@@ -1,0 +1,1 @@
+The linear model predicts a T_at_20min_c of 51.12 °C for batch 102, and its held‑out validation MAE is 0.2005 °C.

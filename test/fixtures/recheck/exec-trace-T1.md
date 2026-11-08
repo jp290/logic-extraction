@@ -1,0 +1,3 @@
+The best-fit model for `cmp_quicksort` over the fit window is the nlogn form, with parameters a = 44.2511 and b = -1.21003 (so effective coefficient +1.21003 on n·log₂(n)). For n = 6144, log₂(6144) ≈ 12.5849625, yielding n·log₂(n) ≈ 77322.01. Plugging into the model gives 44.2511 + 1.21003 × 77322.01 ≈ 93606.2. The validation MAE (885.8 comparisons) serves as the uncertainty band.
+
+FINAL ESTIMATE: 93606 comparisons

@@ -1,0 +1,19 @@
+{
+  "name": "logic-extraction",
+  "version": "0.1.0",
+  "description": "Distill a source document into a verified, source-grounded lens (reasoning, knowledge, understanding) that turns a generalist model into a domain specialist.",
+  "private": true,
+  "type": "module",
+  "license": "AGPL-3.0-only",
+  "scripts": {
+    "start": "bun src/server.ts",
+    "dev": "bun --watch src/server.ts",
+    "test": "bun test",
+    "typecheck": "tsc --noEmit",
+    "golden:record": "bun test/golden/record.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.4.4",
+    "typescript": "^7.0.2"
+  }
+}

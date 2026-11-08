@@ -1,0 +1,170 @@
+{
+ "harness": {
+  "corpus_sha256": "3cdc68400e1346a78d1f9bc218383b1c1266683f959f3191dd0dee2ed16b669a",
+  "csv_seed": 11,
+  "determinism_gate": {
+   "hashseed0_sha256": "7e6527e143f575cbfa6592bd5e38fa3c9a4500de99dc26f5bc7e41f5ebd84fbc",
+   "hashseed1_sha256": "7e6527e143f575cbfa6592bd5e38fa3c9a4500de99dc26f5bc7e41f5ebd84fbc",
+   "identical": true
+  },
+  "implementation": "CPython",
+  "input_family": "random_permutation",
+  "platform": "darwin/arm64",
+  "python": "3.14.3"
+ },
+ "index": {
+  "max": 8192.0,
+  "min": 64.0
+ },
+ "n_rows": 15,
+ "sha256": "bd5c9e51f0ae61a1de13377affbecf7edb6b7efc54b6db370fe7654e934f915b",
+ "shape": null,
+ "shape_cols": null,
+ "spec": {
+  "columns": {
+   "cmp_insertion": {
+    "role": "value",
+    "unit": "comparisons"
+   },
+   "cmp_mergesort": {
+    "role": "value",
+    "unit": "comparisons"
+   },
+   "cmp_quicksort": {
+    "role": "value",
+    "unit": "comparisons"
+   },
+   "cmp_timsort": {
+    "role": "value",
+    "unit": "comparisons"
+   },
+   "n": {
+    "role": "index"
+   }
+  },
+  "notes": "Instrumented element-comparison counts for four sort implementations (insertion sort, top-down merge sort, median-of-3 in-place quicksort, CPython timsort via a counting key). Inputs: uniform random permutations of range(n), generator random.Random(f'perm-{n}-{seed}') then shuffle; the recorded campaign is seed 11, seeds 23 and 47 retained for spread verification. Counts are exact integers \u2014 element comparisons only, no wall-clock, no memory.",
+  "title": "Sort comparison-count campaign \u2014 four implementations, n = 64 to 8192"
+ },
+ "split": [
+  12,
+  3
+ ],
+ "trends": {
+  "cmp_insertion": {
+   "best": "quadratic",
+   "forms": {
+    "linear": {
+     "fit_mae": 173433.78211757462,
+     "params": [
+      -225016.63896583565,
+      -721.0005622609154
+     ],
+     "val_mae": 5932997.517768105
+    },
+    "nlogn": {
+     "fit_mae": 147256.35144732357,
+     "params": [
+      -170434.39324202403,
+      -62.79993862809715
+     ],
+     "val_mae": 5431408.624793538
+    },
+    "quadratic": {
+     "fit_mae": 6200.599556781625,
+     "params": [
+      -3074.305387689499,
+      -0.2533932129127634
+     ],
+     "val_mae": 132929.63737657698
+    }
+   }
+  },
+  "cmp_mergesort": {
+   "best": "nlogn",
+   "forms": {
+    "linear": {
+     "fit_mae": 453.4412434595259,
+     "params": [
+      -990.2899353647275,
+      -10.371872938926263
+     ],
+     "val_mae": 7188.835931935103
+    },
+    "nlogn": {
+     "fit_mae": 56.40222783726471,
+     "params": [
+      -112.55842682701284,
+      -0.8928548708344408
+     ],
+     "val_mae": 699.7558156061883
+    },
+    "quadratic": {
+     "fit_mae": 1997.2839432361386,
+     "params": [
+      2599.6150030300246,
+      -0.003382864229120423
+     ],
+     "val_mae": 69834.30435704485
+    }
+   }
+  },
+  "cmp_quicksort": {
+   "best": "nlogn",
+   "forms": {
+    "linear": {
+     "fit_mae": 489.18208679593687,
+     "params": [
+      -1152.8661126500472,
+      -14.065416007123071
+     ],
+     "val_mae": 7860.616831552567
+    },
+    "nlogn": {
+     "fit_mae": 142.79870107965374,
+     "params": [
+      44.251073737895545,
+      -1.2100340437887258
+     ],
+     "val_mae": 885.7986747871158
+    },
+    "quadratic": {
+     "fit_mae": 2847.626946149801,
+     "params": [
+      3744.120127241644,
+      -0.004568604188300196
+     ],
+     "val_mae": 95852.23006748287
+    }
+   }
+  },
+  "cmp_timsort": {
+   "best": "nlogn",
+   "forms": {
+    "linear": {
+     "fit_mae": 432.93902739304394,
+     "params": [
+      -976.6445060018463,
+      -10.328842665875214
+     ],
+     "val_mae": 7377.235166864528
+    },
+    "nlogn": {
+     "fit_mae": 41.20297980170281,
+     "params": [
+      -101.86527284563999,
+      -0.8890720981030403
+     ],
+     "val_mae": 920.4868614800556
+    },
+    "quadratic": {
+     "fit_mae": 2008.1043463564956,
+     "params": [
+      2601.849304781685,
+      -0.0033665297631495987
+     ],
+     "val_mae": 69236.59207119003
+    }
+   }
+  }
+ }
+}

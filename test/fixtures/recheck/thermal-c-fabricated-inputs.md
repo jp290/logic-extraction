@@ -1,0 +1,3 @@
+The measured per‑batch `t_to_45c_min` values for batch 10 and batch 105 are not contained in the grounding pack as supplied. The pack includes only the first 30 rows (batch 1: 32.6 min) and the last 30 rows (batch 110: 42.3 min); it does not provide the actual records for batches 10 or 105. Therefore I cannot cite the two times from the per‑batch record as requested.
+
+If you need an estimate, I can use the best‑fit exponential trend model from §3a (validation MAE 0.294 min), which gives 32.7 min for batch 10 (within fit window) and 42.3 min for batch 105 (in held‑out set), yielding about 77.3 % as a model‑based figure. But this is not the per‑batch record; it carries the model’s uncertainty and does not replace the actual measured values.

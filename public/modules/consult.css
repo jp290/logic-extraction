@@ -1,0 +1,316 @@
+.c-consult {
+  height: calc(100vh - 60px - 48px - 64px);
+  min-height: 400px;
+}
+.c-consult__wrap {
+  display: flex; flex-direction: column;
+  height: 100%;
+}
+
+/* ── Header: lens selector + settings ── */
+.c-consult__header {
+  display: flex; flex-direction: column; gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-3);
+  flex-shrink: 0;
+}
+
+.c-consult__select {
+  width: 100%;
+  font-family: var(--font-serif); font-optical-sizing: auto;
+  font-size: var(--fs-base); font-weight: var(--fw-medium);
+  background: var(--surface); color: var(--text);
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  border-left: 3px solid var(--domain);
+  padding: var(--space-2) var(--space-3);
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Cpath d='M3.5 5.5l3.5 3.5 3.5-3.5' fill='none' stroke='rgba(255,255,255,0.4)' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 12px center;
+  padding-right: var(--space-7);
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease);
+}
+.c-consult__select:focus {
+  outline: none; border-color: var(--domain);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--domain) 25%, transparent);
+}
+
+.c-consult__settings {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.c-consult__pills {
+  display: flex; gap: 2px;
+  background: var(--surface); border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm); padding: 2px;
+}
+.c-consult__pill {
+  font-family: var(--font); font-size: var(--fs-xs); font-weight: var(--fw-medium);
+  color: var(--text-3); background: none; border: none;
+  padding: 4px 10px; border-radius: 4px;
+  cursor: pointer; transition: all var(--dur-fast) var(--ease);
+  white-space: nowrap;
+}
+.c-consult__pill:hover { color: var(--text-2); }
+.c-consult__pill--active {
+  color: var(--text); background: color-mix(in srgb, var(--domain) 20%, transparent);
+}
+
+.c-consult__style-desc {
+  font-size: var(--fs-xs); color: var(--text-3);
+  line-height: var(--lh-normal);
+  padding: 0 var(--space-1);
+  text-align: right;
+  transition: opacity var(--dur-fast) var(--ease);
+}
+
+.c-consult__depth-warn {
+  font-size: var(--fs-xs); color: #fbbf24;
+  line-height: var(--lh-normal);
+  padding: 0 var(--space-1);
+  text-align: right;
+}
+
+/* ── Chat log ── */
+.c-consult__log {
+  flex: 1; min-height: 0;
+  overflow-y: auto;
+  display: flex; flex-direction: column; gap: var(--space-4);
+  padding: var(--space-4) 0;
+}
+
+/* ── Welcome (no lens selected) ── */
+.c-consult__welcome {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: var(--space-4); padding: var(--space-8);
+  text-align: center;
+}
+.c-consult__welcome-icon { opacity: 0.4; }
+.c-consult__welcome-text {
+  color: var(--text-3); font-size: var(--fs-sm);
+  line-height: var(--lh-relaxed);
+}
+
+/* ── Lens hero (lens selected, no messages yet) ── */
+.c-consult__lens-hero {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: var(--space-4); padding: var(--space-6) var(--space-4);
+  text-align: center; max-width: 600px; margin: 0 auto;
+}
+.c-consult__hero-title {
+  font-family: var(--font-serif); font-optical-sizing: auto;
+  font-size: var(--fs-2xl); font-weight: var(--fw-light);
+  letter-spacing: var(--ls-display);
+  line-height: var(--lh-tight);
+  background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.6) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.c-consult__hero-summary {
+  font-size: var(--fs-base); color: var(--text-2);
+  line-height: var(--lh-relaxed); max-width: 500px;
+}
+.c-consult__hero-tags {
+  display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center;
+}
+.c-consult__hero-tag {
+  font-size: var(--fs-xs); font-weight: var(--fw-medium);
+  color: color-mix(in srgb, var(--domain) 85%, white);
+  background: color-mix(in srgb, var(--domain) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--domain) 15%, transparent);
+  padding: 3px 12px; border-radius: var(--radius-pill);
+  letter-spacing: 0.01em;
+}
+
+/* ── Suggested questions ── */
+.c-consult__suggestions {
+  display: flex; flex-direction: column; gap: var(--space-2);
+  margin-top: var(--space-4); width: 100%; max-width: 460px;
+}
+.c-consult__suggestions-label {
+  font-size: var(--fs-xs); color: var(--text-faint);
+  text-transform: uppercase; letter-spacing: var(--ls-label);
+  font-weight: var(--fw-semibold); text-align: center;
+  margin-bottom: var(--space-1);
+}
+.c-consult__suggestion {
+  font-family: var(--font); font-size: var(--fs-sm);
+  color: var(--text-2); text-align: left;
+  background: var(--glass); border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-3);
+  transition: background var(--dur-fast) var(--ease),
+              border-color var(--dur-fast) var(--ease),
+              color var(--dur-fast) var(--ease),
+              transform var(--dur-fast) var(--ease);
+}
+.c-consult__suggestion::after {
+  content: '→'; color: var(--text-faint); flex-shrink: 0;
+  transition: color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+}
+.c-consult__suggestion:hover {
+  background: var(--glass-2); border-color: color-mix(in srgb, var(--domain) 40%, transparent);
+  color: var(--text); transform: translateX(2px);
+}
+.c-consult__suggestion:hover::after {
+  color: var(--domain); transform: translateX(2px);
+}
+.c-consult__suggestion:active { transform: translateX(0); }
+
+/* ── Question bubble ── */
+.c-consult__msg--question {
+  align-self: flex-end; max-width: 75%;
+  padding: var(--space-3) var(--space-4);
+  background: color-mix(in srgb, var(--domain) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--domain) 20%, transparent);
+  border-radius: var(--radius-md) var(--radius-md) var(--radius-sm) var(--radius-md);
+  font-size: var(--fs-sm); color: var(--text);
+  line-height: var(--lh-normal);
+}
+
+/* ── Answer bubble ── */
+.c-consult__msg--answer {
+  max-width: 92%;
+  padding: var(--space-5);
+  background: var(--glass); border: 1px solid var(--border);
+  border-left: 3px solid var(--domain);
+  border-radius: var(--radius-sm) var(--radius-md) var(--radius-md) var(--radius-md);
+}
+.c-consult__msg--answer .md-body {
+  font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--text-2);
+}
+.c-consult__msg--answer .md-body strong { color: var(--text); }
+.c-consult__msg--answer .md-body h1, .c-consult__msg--answer .md-body h2,
+.c-consult__msg--answer .md-body h3, .c-consult__msg--answer .md-body h4 {
+  color: var(--text);
+  font-family: var(--font-serif); font-optical-sizing: auto;
+  letter-spacing: var(--ls-tight);
+}
+.c-consult__msg--answer .md-body h2 { font-size: var(--fs-lg); font-weight: var(--fw-medium); }
+.c-consult__msg--answer .md-body h3 { font-size: var(--fs-md); font-weight: var(--fw-medium); }
+.c-consult__msg--answer .md-body blockquote {
+  border-left-color: color-mix(in srgb, var(--domain) 40%, transparent);
+  background: color-mix(in srgb, var(--domain) 4%, transparent);
+  padding: var(--space-3) var(--space-4);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+/* ── Thinking ── */
+.c-consult__msg--thinking {
+  display: flex; align-items: center; gap: var(--space-3);
+  color: var(--text-3); font-size: var(--fs-sm);
+  padding: var(--space-3) var(--space-4);
+}
+.c-consult__msg--thinking::before {
+  content: ''; display: inline-block; width: 16px; height: 16px;
+  border: 2px solid var(--border); border-top-color: var(--domain);
+  border-radius: 50%; animation: spin 0.6s linear infinite;
+}
+
+.c-consult__msg--error {
+  font-size: var(--fs-sm); color: var(--danger);
+  padding: var(--space-3) var(--space-4);
+}
+
+/* ── Input area ── */
+.c-consult__input-area {
+  display: flex; gap: var(--space-3); align-items: flex-end;
+  padding: var(--space-3);
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+  margin-top: var(--space-3);
+}
+.c-consult__textarea {
+  flex: 1; min-height: 44px; max-height: 120px;
+  resize: vertical; font-size: var(--fs-sm);
+  background: var(--surface);
+}
+.c-consult__send {
+  padding: var(--space-2) var(--space-4);
+  white-space: nowrap; flex-shrink: 0; height: 44px;
+}
+.c-consult__send:disabled { opacity: 0.35; cursor: default; }
+
+@media (max-width: 640px) {
+  .c-consult { min-width: 0; }
+  .c-consult__header { padding: var(--space-2) var(--space-3); }
+  .c-consult__select { font-size: var(--fs-sm); padding: var(--space-2); }
+  .c-consult__settings { flex-wrap: wrap; }
+  .c-consult__pills { flex-wrap: wrap; background: none; border: none; padding: 0; gap: var(--space-1); }
+  .c-consult__pill { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-pill); padding: 6px 12px; font-size: 11px; min-height: 32px; }
+  .c-consult__pill--active { border-color: color-mix(in srgb, var(--domain) 40%, transparent); }
+  .c-consult__msg--question { max-width: 90%; }
+  .c-consult__lens-hero { padding: var(--space-4) var(--space-2); gap: var(--space-3); }
+  .c-consult__hero-title { font-size: var(--fs-lg); }
+  .c-consult__hero-summary { font-size: var(--fs-sm); }
+  .c-consult__hero-tags { gap: var(--space-1); }
+  .c-consult__hero-tag { font-size: 10px; padding: 2px 8px; }
+  .c-consult__suggestions { max-width: 100%; margin-top: var(--space-2); }
+  .c-consult__suggestion { padding: var(--space-3) var(--space-3); font-size: var(--fs-xs); min-height: 44px; }
+  .c-consult__input-area { padding: var(--space-2); }
+  .c-consult__textarea { min-height: 40px; }
+  .c-consult__send { padding: var(--space-2) var(--space-3); height: 44px; font-size: var(--fs-xs); }
+}
+
+.c-consult__reasoning {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: var(--fs-sm); color: var(--text-3);
+  cursor: pointer; user-select: none; white-space: nowrap;
+}
+.c-consult__reasoning input { accent-color: var(--accent); }
+
+.c-consult__model {
+  margin-top: var(--space-2);
+  font-family: var(--font-mono, monospace); font-size: 10px;
+  color: var(--text-3); opacity: 0.7;
+}
+
+.c-consult__recheck { margin-top: var(--space-2); }
+
+.c-consult__recheck-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: var(--fs-xs); line-height: 1.3;
+  padding: 3px 9px; border-radius: var(--radius-pill);
+  border: 1px solid var(--border); background: var(--surface);
+  color: var(--text-2); cursor: pointer; font-family: inherit;
+}
+.c-consult__recheck-badge--static { cursor: default; }
+.c-consult__recheck-badge--alert {
+  color: var(--danger); border-color: var(--danger);
+  background: color-mix(in srgb, var(--danger) 10%, transparent);
+}
+.c-consult__recheck-badge--ok {
+  color: var(--success); border-color: color-mix(in srgb, var(--success) 50%, var(--border));
+}
+.c-consult__recheck-badge--muted { color: var(--text-3); }
+
+.c-consult__recheck-list {
+  margin-top: var(--space-2);
+  display: flex; flex-direction: column; gap: var(--space-2);
+}
+.c-consult__recheck-claim {
+  display: flex; gap: 8px;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle); background: var(--surface);
+  font-size: var(--fs-xs);
+}
+.c-consult__recheck-claim--flag { border-left: 3px solid var(--danger); }
+.c-consult__recheck-claim--pass { border-left: 3px solid var(--success); }
+.c-consult__recheck-icon { flex: 0 0 auto; }
+.c-consult__recheck-claim--flag .c-consult__recheck-icon { color: var(--danger); }
+.c-consult__recheck-claim--pass .c-consult__recheck-icon { color: var(--success); }
+.c-consult__recheck-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.c-consult__recheck-excerpt { color: var(--text-2); }
+.c-consult__recheck-recomputed {
+  color: var(--text-3); font-family: var(--font-mono, monospace); font-size: 10px;
+}
